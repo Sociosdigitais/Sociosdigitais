@@ -1,14 +1,18 @@
-Moralis.initialize(""); //Application ID
-Moralis.serverURL = ""; // serverURL
+Moralis.initialize("INSERT_APP_ID)"); //Application ID from moralis.io
+Moralis.serverURL = "INSERT_SERVER_URL"; // serverURL from moralis.io
 
 async function login() {
   try {
-    user = await Moralis.Web3.authenticate(); //Authenticate and add to DB
-    console.log(user);
-    alert("User logged in")
+    currentUser = Moralis.User.current(); 
+    if(!currentUser){
+        currentUser = await Moralis.Web3.authenticate();
+    }
   } catch (error) {
-    console.log(error);
+      console.log(error);
   }
 }
-
-document.getElementById("login_button").onlick = login;
+  
+  document.getElementById("login_button").onlick = login;
+  
+  
+ 
